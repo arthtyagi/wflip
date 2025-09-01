@@ -27,10 +27,27 @@ out/
 build
 dist
 
-
 # Debug
 npm-debug.log*
 
 # Misc
 .DS_Store
 *.pem
+
+# Docker
+docker-compose.override.yml
+.docker/
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Database
+*.db
+*.sqlite
