@@ -56,7 +56,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
       - DATABASE_URL=postgresql://wflip:wflipdev123@db:5432/wflip
       - UPSTASH_REDIS_REST_URL=http://serverless-redis-http:80
       - UPSTASH_REDIS_REST_TOKEN=dev_token_wflip
@@ -67,16 +67,11 @@ services:
       serverless-redis-http:
         condition: service_healthy
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/health || exit 1"]
+      test: ["CMD-SHELL", "wget --spider -q http://localhost:3000/api/health || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 5
       start_period: 30s
-    volumes:
-      - ./apps/web:/app/apps/web
-      - ./packages:/app/packages
-      - /app/node_modules
-      - /app/apps/web/node_modules
 
 volumes:
   postgres_data:
