@@ -1,12 +1,17 @@
 {
-  "name": "shadcn-ui-monorepo",
+  "name": "wflip",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "start": "docker compose -f docker-compose.dev.yaml up -d && echo '\n✅ Services started! Run: pnpm dev'",
+    "stop": "docker compose down",
+    "logs": "docker compose logs -f",
+    "reset": "docker compose down -v && docker compose -f docker-compose.dev.yaml up -d",
+    "prod": "docker compose up --build"
   },
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",
